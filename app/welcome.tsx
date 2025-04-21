@@ -562,8 +562,8 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
             <input
               style={{ pointerEvents: 'auto' }}
               type="email"
-              name="johndoe@gmail.com"
-              placeholder="Email" className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              name="email"
+              placeholder="johndoe@gmail.com" className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
