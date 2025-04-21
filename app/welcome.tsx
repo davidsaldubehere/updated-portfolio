@@ -98,7 +98,9 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }: HomeProps) {
       className="bg-black/30 rounded-2xl p-8 max-w-4xl w-full flex flex-col sm:flex-row gap-6 mx-4 shadow-lg"
       style={{
         backdropFilter: 'blur(3px)',
+        pointerEvents: 'none'
       }}
+
     >
       {/* Profile picture - always on left except on very small screens */}
       <div className="flex-shrink-0 mx-auto sm:mx-0">
@@ -228,8 +230,7 @@ export function Welcome() {
   };
 
   return (
-    <div className="relative min-h-screen overflow-hidden"
-      style={{ pointerEvents: 'none' }}>
+    <div className="relative min-h-screen overflow-hidden">
 
       {/* tailwind seems to be broken for both the blur and pointer-events-none features i need */}
       < div className="relative z-10 flex items-center justify-center min-h-screen" >
@@ -287,6 +288,8 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
     <div ref={containerRef} className="bg-black/30 rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-lg"
       style={{
         backdropFilter: 'blur(3px)',
+        pointerEvents: 'none'
+
       }}>
       <div className="flex items-center gap-4 mb-6">
         <button
@@ -523,6 +526,8 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
     <div ref={containerRef} className="bg-black/30 rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-lg"
       style={{
         backdropFilter: 'blur(3px)',
+        pointerEvents: 'none'
+
       }}>
       <div className="flex items-center gap-4 mb-6">
         <button
