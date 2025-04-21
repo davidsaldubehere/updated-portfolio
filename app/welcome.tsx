@@ -1,13 +1,38 @@
 import gsap from 'gsap';
 import { useEffect, useRef, useState } from 'react';
 
+// Type for navigation views
+type ViewType = 'home' | 'experience' | 'projects' | 'contact';
 
-function Home({ onNavigate, isNavigatingBack, prevHeight }) {
-  const containerRef = useRef(null);
-  const [currentHeight, setCurrentHeight] = useState(0);
+// Props interface for Home component
+interface HomeProps {
+  onNavigate: (view: ViewType, height: number) => void;
+  isNavigatingBack: boolean;
+  prevHeight: number;
+}
+
+// Props interface for view components (Experience, Projects, Contact)
+interface ViewProps {
+  onBack: (height?: number) => void;
+  prevHeight: number;
+}
+
+// Interface for view heights reference
+interface ViewHeights {
+  home: number;
+  experience: number;
+  projects: number;
+  contact: number;
+}
+
+function Home({ onNavigate, isNavigatingBack, prevHeight }: HomeProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentHeight, setCurrentHeight] = useState<number>(0);
 
   useEffect(() => {
     const container = containerRef.current;
+
+    if (!container) return;
 
     if (isNavigatingBack) {
       // When coming back to home, use height transition instead of opacity
@@ -30,7 +55,6 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }) {
         { opacity: 0, y: 20 },
         { opacity: 1, y: 0, duration: 0.6, stagger: 0.1, ease: "power2.out", delay: 0.4 }
       );
-
 
     } else {
       // First time loading, use opacity animation
@@ -62,8 +86,10 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }) {
   }, [isNavigatingBack, prevHeight]);
 
   // Pass current height when navigating
-  const handleNavigate = (view) => {
-    onNavigate(view, containerRef.current.offsetHeight);
+  const handleNavigate = (view: ViewType) => {
+    if (containerRef.current) {
+      onNavigate(view, containerRef.current.offsetHeight);
+    }
   };
 
   return (
@@ -106,7 +132,6 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }) {
           </button>
           <button
             style={{ pointerEvents: 'auto' }}
-
             onClick={() => handleNavigate('projects')}
             className="font-semibold nav-link hover:text-blue-300 cursor-pointer transition duration-200"
           >
@@ -114,7 +139,6 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }) {
           </button>
           <button
             style={{ pointerEvents: 'auto' }}
-
             onClick={() => handleNavigate('contact')}
             className="font-semibold nav-link hover:text-blue-300 cursor-pointer transition duration-200"
           >
@@ -127,13 +151,13 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }) {
 }
 
 export function Welcome() {
-  const [currentView, setCurrentView] = useState('home');
-  const [previousHeight, setPreviousHeight] = useState(0);
-  const [isNavigatingBack, setIsNavigatingBack] = useState(false);
-  const previousViewRef = useRef('home');
+  const [currentView, setCurrentView] = useState<ViewType>('home');
+  const [previousHeight, setPreviousHeight] = useState<number>(0);
+  const [isNavigatingBack, setIsNavigatingBack] = useState<boolean>(false);
+  const previousViewRef = useRef<ViewType>('home');
 
   // Store heights for each view to ensure proper transitions
-  const viewHeightsRef = useRef({
+  const viewHeightsRef = useRef<ViewHeights>({
     home: 0,
     experience: 0,
     projects: 0,
@@ -153,7 +177,7 @@ export function Welcome() {
     }
   }, []);
 
-  function handleNavigate(view, height) {
+  function handleNavigate(view: ViewType, height: number) {
     // Store the height of current view before changing
     if (height) {
       viewHeightsRef.current[currentView] = height;
@@ -172,7 +196,7 @@ export function Welcome() {
     }
   }
 
-  function handleNavigateBack(height) {
+  function handleNavigateBack(height?: number) {
     // Store height of the current view before navigating back
     if (height) {
       viewHeightsRef.current[currentView] = height;
@@ -203,7 +227,6 @@ export function Welcome() {
     }
   };
 
-
   return (
     <div className="relative min-h-screen overflow-hidden"
       style={{ pointerEvents: 'none' }}>
@@ -216,13 +239,15 @@ export function Welcome() {
   );
 }
 
-const Experience = ({ onBack, prevHeight }) => {
-  const containerRef = useRef(null);
-  const [currentHeight, setCurrentHeight] = useState(0);
+const Experience = ({ onBack, prevHeight }: ViewProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentHeight, setCurrentHeight] = useState<number>(0);
 
   useEffect(() => {
     // Only reference the current property once
     const container = containerRef.current;
+
+    if (!container) return;
 
     gsap.fromTo(
       container,
@@ -251,7 +276,11 @@ const Experience = ({ onBack, prevHeight }) => {
 
   // Pass current height when navigating back
   const handleBack = () => {
-    onBack(containerRef.current.offsetHeight);
+    if (containerRef.current) {
+      onBack(containerRef.current.offsetHeight);
+    } else {
+      onBack();
+    }
   };
 
   return (
@@ -262,7 +291,6 @@ const Experience = ({ onBack, prevHeight }) => {
       <div className="flex items-center gap-4 mb-6">
         <button
           style={{ pointerEvents: 'auto' }}
-
           onClick={handleBack}
           className="text-white hover:text-blue-300 transition duration-200"
         >
@@ -292,7 +320,6 @@ const Experience = ({ onBack, prevHeight }) => {
         <div className="flex gap-5 animate-item">
           <div className="flex-shrink-0 w-16 h-16  rounded">
             <img src="public/uit.png" alt="PSU UIT Lab" className="w-full h-full object-cover rounded" />
-
           </div>
           <div>
             <h2 className="text-xl text-white font-semibold">computer vision researcher at Penn State UIT Lab</h2>
@@ -305,12 +332,14 @@ const Experience = ({ onBack, prevHeight }) => {
 };
 
 // Projects Component
-const Projects = ({ onBack, prevHeight }) => {
-  const containerRef = useRef(null);
-  const [currentHeight, setCurrentHeight] = useState(0);
+const Projects = ({ onBack, prevHeight }: ViewProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentHeight, setCurrentHeight] = useState<number>(0);
 
   useEffect(() => {
     const container = containerRef.current;
+
+    if (!container) return;
 
     // Apply height transition
     gsap.fromTo(
@@ -339,7 +368,11 @@ const Projects = ({ onBack, prevHeight }) => {
 
   // Pass current height when navigating back
   const handleBack = () => {
-    onBack(containerRef.current.offsetHeight);
+    if (containerRef.current) {
+      onBack(containerRef.current.offsetHeight);
+    } else {
+      onBack();
+    }
   };
 
   return (
@@ -370,7 +403,13 @@ const Projects = ({ onBack, prevHeight }) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Computer Vision</span>
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Machine Learning</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
-              <img src="public/github.svg" alt="GitHub" className="inline-block w-4 h-4" onClick={() => window.open("https://github.com/davidsaldubehere/ViGR-Unet", "_blank")} style={{ pointerEvents: 'auto', cursor: 'pointer' }} />
+              <img
+                src="public/github.svg"
+                alt="GitHub"
+                className="inline-block w-4 h-4"
+                onClick={() => window.open("https://github.com/davidsaldubehere/ViGR-Unet", "_blank")}
+                style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+              />
             </span>
           </div>
         </div>
@@ -383,7 +422,13 @@ const Projects = ({ onBack, prevHeight }) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Graph Theory</span>
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">NumPy</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
-              <img src="public/github.svg" alt="GitHub" className="inline-block w-4 h-4" onClick={() => window.open("https://github.com/davidsaldubehere/georouter/", "_blank")} style={{ pointerEvents: 'auto', cursor: 'pointer' }} />
+              <img
+                src="public/github.svg"
+                alt="GitHub"
+                className="inline-block w-4 h-4"
+                onClick={() => window.open("https://github.com/davidsaldubehere/georouter/", "_blank")}
+                style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+              />
             </span>
           </div>
         </div>
@@ -396,7 +441,13 @@ const Projects = ({ onBack, prevHeight }) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">MySQL</span>
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Django</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
-              <img src="public/github.svg" alt="GitHub" className="inline-block w-4 h-4" onClick={() => window.open("https://github.com/davidsaldubehere/psu3dprintingappfrontend/", "_blank")} style={{ pointerEvents: 'auto', cursor: 'pointer' }} />
+              <img
+                src="public/github.svg"
+                alt="GitHub"
+                className="inline-block w-4 h-4"
+                onClick={() => window.open("https://github.com/davidsaldubehere/psu3dprintingappfrontend/", "_blank")}
+                style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+              />
             </span>
           </div>
         </div>
@@ -409,7 +460,13 @@ const Projects = ({ onBack, prevHeight }) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">GCC</span>
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Computer Architecture</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
-              <img src="public/github.svg" alt="GitHub" className="inline-block w-4 h-4" onClick={() => window.open("https://github.com/davidsaldubehere/malloc-implementation", "_blank")} style={{ pointerEvents: 'auto', cursor: 'pointer' }} />
+              <img
+                src="public/github.svg"
+                alt="GitHub"
+                className="inline-block w-4 h-4"
+                onClick={() => window.open("https://github.com/davidsaldubehere/malloc-implementation", "_blank")}
+                style={{ pointerEvents: 'auto', cursor: 'pointer' }}
+              />
             </span>
           </div>
         </div>
@@ -419,12 +476,14 @@ const Projects = ({ onBack, prevHeight }) => {
 };
 
 // Contact Component
-const Contact = ({ onBack, prevHeight }) => {
-  const containerRef = useRef(null);
-  const [currentHeight, setCurrentHeight] = useState(0);
+const Contact = ({ onBack, prevHeight }: ViewProps) => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentHeight, setCurrentHeight] = useState<number>(0);
 
   useEffect(() => {
     const container = containerRef.current;
+
+    if (!container) return;
 
     // Apply height transition
     gsap.fromTo(
@@ -453,7 +512,11 @@ const Contact = ({ onBack, prevHeight }) => {
 
   // Pass current height when navigating back
   const handleBack = () => {
-    onBack(containerRef.current.offsetHeight);
+    if (containerRef.current) {
+      onBack(containerRef.current.offsetHeight);
+    } else {
+      onBack();
+    }
   };
 
   return (
@@ -464,7 +527,6 @@ const Contact = ({ onBack, prevHeight }) => {
       <div className="flex items-center gap-4 mb-6">
         <button
           style={{ pointerEvents: 'auto' }}
-
           onClick={handleBack}
           className="text-white hover:text-blue-300 transition duration-200"
         >
@@ -482,25 +544,37 @@ const Contact = ({ onBack, prevHeight }) => {
         <form className="space-y-4">
           <div className="animate-item">
             <label className="block text-blue-200 mb-1">Name</label>
-            <input style={{ pointerEvents: 'auto' }}
-              type="text" className="w-full bg-black/20 text-white  rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <input
+              style={{ pointerEvents: 'auto' }}
+              type="text"
+              className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
           </div>
 
           <div className="animate-item">
             <label className="block text-blue-200 mb-1">Email</label>
-            <input style={{ pointerEvents: 'auto' }}
-              type="email" className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400" />
+            <input
+              style={{ pointerEvents: 'auto' }}
+              type="email"
+              className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            />
           </div>
 
           <div className="animate-item">
             <label className="block text-blue-200 mb-1">Message</label>
-            <textarea style={{ pointerEvents: 'auto' }}
-              className="w-full bg-black/20 text-white border border-blue-600/50 rounded-md p-2 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"></textarea>
+            <textarea
+              style={{ pointerEvents: 'auto' }}
+              className="w-full bg-black/20 text-white border border-blue-600/50 rounded-md p-2 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"
+            ></textarea>
           </div>
 
           <div className="animate-item">
-            <button style={{ pointerEvents: 'auto' }}
-              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-md transition duration-200">Send Message</button>
+            <button
+              style={{ pointerEvents: 'auto' }}
+              className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-md transition duration-200"
+            >
+              Send Message
+            </button>
           </div>
         </form>
       </div>
