@@ -541,12 +541,18 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
           <p className="text-blue-200">Feel free to reach out for opportunities or just to say hello!</p>
         </div>
 
-        <form className="space-y-4">
+        <form className="space-y-4" name="contact"
+          method="POST"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+
           <div className="animate-item">
             <label className="block text-blue-200 mb-1">Name</label>
             <input
               style={{ pointerEvents: 'auto' }}
               type="text"
+              name="name"
+              placeholder="Name"
               className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -556,7 +562,8 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
             <input
               style={{ pointerEvents: 'auto' }}
               type="email"
-              className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              name="email"
+              placeholder="Email" className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
 
@@ -564,6 +571,8 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
             <label className="block text-blue-200 mb-1">Message</label>
             <textarea
               style={{ pointerEvents: 'auto' }}
+              name="message"
+              placeholder="Message"
               className="w-full bg-black/20 text-white border border-blue-600/50 rounded-md p-2 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"
             ></textarea>
           </div>
@@ -571,6 +580,7 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
           <div className="animate-item">
             <button
               style={{ pointerEvents: 'auto' }}
+              type='submit'
               className="bg-blue-600 hover:bg-blue-500 text-white px-6 py-2 rounded-md transition duration-200"
             >
               Send Message
