@@ -104,7 +104,7 @@ function Home({ onNavigate, isNavigatingBack, prevHeight }: HomeProps) {
       <div className="flex-shrink-0 mx-auto sm:mx-0">
         <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-lg overflow-hidden">
           <img
-            src="public/profile1.jpeg"
+            src="profile1.jpeg"
             alt="Profile"
             className="w-full h-full object-cover"
           />
@@ -167,7 +167,7 @@ export function Welcome() {
   useEffect(() => {
     const script = document.createElement('script');
 
-    script.src = "/public/bundle.js";
+    script.src = "/bundle.js";
     script.async = true;
 
     document.body.appendChild(script);
@@ -301,7 +301,7 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
       <div className="space-y-8">
         <div className="flex gap-5 animate-item">
           <div className="flex-shrink-0 w-16 h-16 rounded">
-            <img src="public/sheetz.webp" alt="sheetz" className="w-full h-full object-cover rounded" />
+            <img src="sheetz.webp" alt="sheetz" className="w-full h-full object-cover rounded" />
           </div>
           <div>
             <h2 className="text-xl text-white font-semibold">software engineering intern at Sheetz</h2>
@@ -310,7 +310,7 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
         </div>
         <div className="flex gap-5 animate-item">
           <div className="flex-shrink-0 w-16 h-16 rounded">
-            <img src="public/psu.png" alt="PSU" className="w-full h-full object-cover rounded" />
+            <img src="psu.png" alt="PSU" className="w-full h-full object-cover rounded" />
           </div>
           <div>
             <h2 className="text-xl text-white font-semibold">software engineering intern at Penn State</h2>
@@ -319,7 +319,7 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
         </div>
         <div className="flex gap-5 animate-item">
           <div className="flex-shrink-0 w-16 h-16  rounded">
-            <img src="public/uit.png" alt="PSU UIT Lab" className="w-full h-full object-cover rounded" />
+            <img src="uit.png" alt="PSU UIT Lab" className="w-full h-full object-cover rounded" />
           </div>
           <div>
             <h2 className="text-xl text-white font-semibold">computer vision researcher at Penn State UIT Lab</h2>
@@ -404,7 +404,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Machine Learning</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
               <img
-                src="public/github.svg"
+                src="github.svg"
                 alt="GitHub"
                 className="inline-block w-4 h-4"
                 onClick={() => window.open("https://github.com/davidsaldubehere/ViGR-Unet", "_blank")}
@@ -423,7 +423,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">NumPy</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
               <img
-                src="public/github.svg"
+                src="github.svg"
                 alt="GitHub"
                 className="inline-block w-4 h-4"
                 onClick={() => window.open("https://github.com/davidsaldubehere/georouter/", "_blank")}
@@ -442,7 +442,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Django</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
               <img
-                src="public/github.svg"
+                src="github.svg"
                 alt="GitHub"
                 className="inline-block w-4 h-4"
                 onClick={() => window.open("https://github.com/davidsaldubehere/psu3dprintingappfrontend/", "_blank")}
@@ -461,7 +461,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
             <span className="text-xs bg-blue-600/50 text-white px-2 py-1 rounded">Computer Architecture</span>
             <span className="text-xs bg-white text-white px-2 py-1 rounded">
               <img
-                src="public/github.svg"
+                src="github.svg"
                 alt="GitHub"
                 className="inline-block w-4 h-4"
                 onClick={() => window.open("https://github.com/davidsaldubehere/malloc-implementation", "_blank")}
