@@ -380,7 +380,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
       ref={containerRef}
       className="bg-black/30 rounded-2xl p-4 sm:p-8 max-w-4xl w-full mx-4 shadow-lg max-h-[80vh] md:max-h-none overflow-y-auto md:overflow-visible"
       style={{
-        backdropFilter: 'blur(3px)',
+        backdropFilter: 'blur(3px)', touchAction: 'auto',
       }}
     >
       <div className="flex items-center gap-4 mb-6 relative top-0 py-2 z-10">
