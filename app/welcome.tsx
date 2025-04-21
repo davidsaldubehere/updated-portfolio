@@ -290,7 +290,7 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
       }}>
       <div className="flex items-center gap-4 mb-6">
         <button
-          style={{ pointerEvents: 'auto' }}
+          style={{ pointerEvents: 'auto', fontSize: '30px' }}
           onClick={handleBack}
           className="text-white hover:text-blue-300 transition duration-200"
         >
@@ -385,7 +385,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
     >
       <div className="flex items-center gap-4 mb-6 relative top-0 py-2 z-10">
         <button
-          style={{ pointerEvents: 'auto' }}
+          style={{ pointerEvents: 'auto', fontSize: '30px' }}
           onClick={handleBack}
           className="text-white hover:text-blue-300 transition duration-200"
         >
@@ -526,7 +526,7 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
       }}>
       <div className="flex items-center gap-4 mb-6">
         <button
-          style={{ pointerEvents: 'auto' }}
+          style={{ pointerEvents: 'auto', fontSize: '30px' }}
           onClick={handleBack}
           className="text-white hover:text-blue-300 transition duration-200"
         >
