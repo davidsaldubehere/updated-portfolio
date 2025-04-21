@@ -49,6 +49,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         ></div>
         {/* credit to Tyler Chi for background https://github.com/Tyler-Chi/Koi-Fish */}
         <canvas className="absolute z-1 w-full h-full top-0"></canvas>
+        <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+          <input type="text" name="name" />
+          <input type="email" name="email" />
+          <textarea name="message"></textarea>
+        </form>
       </body>
     </html>
   );

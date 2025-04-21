@@ -552,7 +552,7 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
               style={{ pointerEvents: 'auto' }}
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder="John Doe"
               className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -562,7 +562,7 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
             <input
               style={{ pointerEvents: 'auto' }}
               type="email"
-              name="email"
+              name="johndoe@gmail.com"
               placeholder="Email" className="w-full bg-black/20 text-white rounded-md p-2 focus:outline-none focus:ring-2 focus:ring-blue-400"
             />
           </div>
@@ -572,7 +572,6 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
             <textarea
               style={{ pointerEvents: 'auto' }}
               name="message"
-              placeholder="Message"
               className="w-full bg-black/20 text-white border border-blue-600/50 rounded-md p-2 h-32 focus:outline-none focus:ring-2 focus:ring-blue-400"
             ></textarea>
           </div>
