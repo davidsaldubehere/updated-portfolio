@@ -542,9 +542,9 @@ const Contact = ({ onBack, prevHeight }: ViewProps) => {
         </div>
 
         <form className="space-y-4" name="contact"
-          method="POST" data-netlify="true"
+          method="POST"
         >
-          <input type="hidden" name="form-name" value="don't touch this" />
+          <input type="hidden" name="form-name" value="contact" />
 
           <div className="animate-item">
             <label className="block text-blue-200 mb-1">Name</label>
