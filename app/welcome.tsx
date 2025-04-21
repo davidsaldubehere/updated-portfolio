@@ -378,7 +378,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
   return (
     <div
       ref={containerRef}
-      className="bg-black/30 rounded-2xl p-4 sm:p-8 max-w-4xl w-full mx-4 shadow-lg max-h-[90vh] md:max-h-none overflow-y-auto md:overflow-visible"
+      className="bg-black/30 rounded-2xl p-4 sm:p-8 max-w-4xl w-full mx-4 shadow-lg max-h-[80vh] md:max-h-none overflow-y-auto md:overflow-visible"
       style={{
         backdropFilter: 'blur(3px)',
       }}
@@ -452,7 +452,7 @@ const Projects = ({ onBack, prevHeight }: ViewProps) => {
           </div>
         </div>
 
-        <div className="bg-black/20 p-5 rounded-lg animate-item">
+        <div className="bg-black/20 p-5 rounded-lg animate-item mb-30 md:mb-0">
           <h2 className="text-xl text-white font-semibold mb-2">Dynamic Memory Allocator</h2>
           <p className="text-blue-200 mb-3">Custom implementation of GNU Malloc with segmented lists</p>
           <div className="flex flex-wrap gap-2">
