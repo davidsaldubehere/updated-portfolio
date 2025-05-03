@@ -285,10 +285,10 @@ const Experience = ({ onBack, prevHeight }: ViewProps) => {
   };
 
   return (
-    <div ref={containerRef} className="bg-black/30 rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-lg"
+    <div ref={containerRef} className="bg-black/30 rounded-2xl p-8 max-w-4xl w-full mx-4 shadow-lg max-h-[80vh] md:max-h-none overflow-y-auto md:overflow-visible"
       style={{
         backdropFilter: 'blur(3px)',
-        pointerEvents: 'none'
+        pointerEvents: 'auto'
 
       }}>
       <div className="flex items-center gap-4 mb-6">
